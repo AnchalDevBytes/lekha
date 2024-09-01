@@ -1,4 +1,4 @@
-// import { BookmarkIcon } from "@/components/icons/BookmarkIcon";
+import { BookmarkIcon } from "@/components/icons/BookmarkIcon";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -27,7 +27,7 @@ const Article = ({ title, content, author, publishedDate, id }: articlePropType)
                 <span>By {author}</span>
               </div>
               <Button variant="ghost" size="sm" className="gap-1">
-                {/* <BookmarkIcon className="w-4 h-4" /> */}
+                <BookmarkIcon className="w-4 h-4" />
               </Button>
             </div>
           </div>
