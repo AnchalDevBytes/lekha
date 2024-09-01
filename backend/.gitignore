@@ -12,7 +12,7 @@ dist/
 .idea/shelf
 
 wrangler.toml
-
+wrangler.toml
 # deps
 node_modules/
 .wrangler
