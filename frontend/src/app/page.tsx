@@ -9,7 +9,7 @@ export default function Home() {
             Welcome to Lekha
           </div>
           <h1 className="text-5xl max-w-4xl font-extrabold tracking-tighter text-gray-900 sm:text-7xl">
-          &quot;Words are, of course, the most powerful drug used by mankind.&quot;
+          Words are, of course, the most powerful drug used by mankind.
           </h1>
           <p className="max-w-[600px] mx-auto text-gray-600 md:text-lg">
             Let your words resonate with the world. Share your stories, thoughts, and ideas on a platform that values your voice.
