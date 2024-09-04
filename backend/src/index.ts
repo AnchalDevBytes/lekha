@@ -11,7 +11,7 @@ const app = new Hono<{
 }>()
 
 app.use('*', cors({
-  origin: ['http://localhost:3000', 'https://lekha-u6gogutau-anchal-rajs-projects.vercel.app'],
+  origin: ['http://localhost:3000', 'https://lekha.vercel.app/'],
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowHeaders: ['Content-Type', 'Authorization'],
   maxAge: 86400,
