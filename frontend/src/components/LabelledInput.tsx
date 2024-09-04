@@ -4,20 +4,21 @@ import { Label } from '@/components/ui/label';
 
 interface labelledInputType {
     label : string,
+    id: string,
     type?: "text" | "password" | "email",
     placeholder: string,
     changeHandler: ChangeEventHandler
 }
 
-function LabelledInput({ label, type, placeholder, changeHandler }: labelledInputType) {
+function LabelledInput({ label, id, type, placeholder, changeHandler }: labelledInputType) {
     return(
         <div>
             <Label htmlFor={label}>
                 {label}
             </Label>
             <Input
-                id={label}
-                name={label}
+                id={id}
+                name={id}
                 type={type}
                 placeholder={placeholder}
                 onChange={changeHandler}

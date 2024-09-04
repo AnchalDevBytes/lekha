@@ -105,19 +105,22 @@ export const Auth = ({type} : {type: "signup" | "signin"}) => {
                 {
                     type === 'signup' && <LabelledInput
                                             label='name'
+                                            id='name'
                                             placeholder="Enter your name"
                                             type="text"
                                             changeHandler={signUpChangeHandler}
                                         />
                 }
                 <LabelledInput
-                    label='userName'
+                    label='email'
+                    id='userName'
                     placeholder="Enter your username"
                     type="email"
                     changeHandler={type === 'signup' ? signUpChangeHandler : signInChangeHandler}
                 />
                 <LabelledInput
                     label='password'
+                    id='password'
                     placeholder="Enter your password"
                     type="password"
                     changeHandler={type === 'signup' ? signUpChangeHandler : signInChangeHandler}
