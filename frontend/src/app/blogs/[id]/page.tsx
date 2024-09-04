@@ -52,10 +52,10 @@ const ArticlePage = ()  => {
         ...loading blog
     </div>
     ) : (
-    <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 ">
+    <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 mt-10">
       <div className="space-y-8 overflow-hidden ">
         <div className="text-center space-y-4">
-          <h1 className="text-3xl font-bold">{blog?.title}</h1>
+          <h1 className="mx-auto text-3xl font-bold w-[900px]">{blog?.title}</h1>
           <div className="flex items-center justify-center text-muted-foreground text-sm">
             <span>{new Date(blog?.publishedAt).toLocaleString('en-GB')}</span>
             <span className="mx-2">·</span>

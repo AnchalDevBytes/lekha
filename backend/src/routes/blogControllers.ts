@@ -200,7 +200,11 @@ blogRouter.get('/bulk', async (c) => {
         }
        },
       authorId: true,
-      published: true
+      published: true,
+      publishedAt: true
+    },
+    orderBy: {
+      publishedAt : 'desc'
     }
   });
 
