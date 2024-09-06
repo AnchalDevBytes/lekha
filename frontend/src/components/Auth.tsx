@@ -22,6 +22,8 @@ export const Auth = ({type} : {type: "signup" | "signin"}) => {
         userName: "",
         password: ""
     })
+    const [isLoading, setIsLoading] = useState({signin: false, signup: false});
+
     const router = useRouter();
 
     const signUpChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,8 +43,8 @@ export const Auth = ({type} : {type: "signup" | "signin"}) => {
     const handleSignupSubmission = async (e: FormEvent) => {
         e.preventDefault();
         try {
+            setIsLoading((prev) => ({...prev, signup: true}));
             const { data } : AxiosResponse<SignupResponseData> = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, signupInput);
-
             if(data.status !== 200) {
                 toast.error(data.message)
             } else {
@@ -55,18 +57,21 @@ export const Auth = ({type} : {type: "signup" | "signin"}) => {
                     toast.error("Token not found in response.");
                 }
             }
+            setIsLoading((prev) => ({...prev, signup: false}));
         } catch (error) {
            if(error instanceof Error) {
             toast.error(error.message)
            } else {
                 toast.error("Unknow error while signing up...")
            }
+           setIsLoading((prev) => ({...prev, signup: false}));
         }
     }
 
     const handleSigninSubmission = async (e: FormEvent) => {
         e.preventDefault();
         try {
+            setIsLoading((prev) => ({...prev, signin: true}));
             const { data }: AxiosResponse<SigninResponseData> = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, signinInput);
             if(data.status !== 200) {
                 toast.error(data.message);
@@ -78,12 +83,14 @@ export const Auth = ({type} : {type: "signup" | "signin"}) => {
                     router.replace('/blogs');
                 }
             }
+            setIsLoading((prev) => ({...prev, signin: false}));
         } catch (error) {
             if(error instanceof Error) {
                 toast.error(error.message)
             } else {
-                toast.error("Unknow error while signing up...")
+                toast.error("Unknow error while signin...")
             }
+            setIsLoading((prev) => ({...prev, signin: false}));
         }
     }
 
@@ -129,8 +136,8 @@ export const Auth = ({type} : {type: "signup" | "signin"}) => {
                     type="submit"
                     className="w-full"
                 >
-                    {type === 'signup' && "Sign Up" }
-                    {type === 'signin' && "Sign In"}
+                    {type === 'signup' && (isLoading.signup ? "...loading" : "Signup")}
+                    {type === 'signin' && (isLoading.signin ? "...loading" : "Signin")}
                 </Button>
             </form>
             <div className="text-center text-muted-foreground">
