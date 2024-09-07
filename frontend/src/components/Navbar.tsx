@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link";
+import Cookie from "js-cookie";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -8,9 +9,17 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
+  const handleLogout = () => {
+    Cookie.remove('token');
+    toast.success("Logged out Successfully!");
+    router.replace("/publicRoutes/signin");
+  }
 
   return (
     <div className='absolute top-2 right-3 w-96 rounded-md px-5 h-16 flex items-center justify-around shadow'>
@@ -36,7 +45,7 @@ const Navbar = () => {
         <DropdownMenuContent className='absolute -right-4 top-4'>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
+          <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
