@@ -20,6 +20,7 @@ export const config = {
         "/",
         "/publicRoutes/signup",
         "/publicRoutes/signin",
+        "/blogs/:id*",
         "/blogs",
         "/blogs/create-blog"
     ],
