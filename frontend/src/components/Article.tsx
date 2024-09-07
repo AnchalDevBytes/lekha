@@ -20,7 +20,7 @@ const Article = ({ title, content, author, publishedDate, id }: articlePropType)
             </p>
             <div className="flex items-center justify-between">
               <div className="flex items-center text-accent-foreground text-sm">
-                <span>{publishedDate}</span>
+                <span>{new Date(publishedDate).toLocaleDateString()}</span>
                 <span className="mx-4 text-lg">|</span>
                 <span>{`${Math.ceil(content.length/100)} minutes`}</span>
                 <span className="mx-4 text-lg">|</span>

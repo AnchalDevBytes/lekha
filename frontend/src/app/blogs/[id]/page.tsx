@@ -34,15 +34,15 @@ const ArticlePage = ()  => {
                         Authorization : Cookie.get("token")
                     }
                 });
-                setBlog(data.data)
-                setIsLoading(false)
+                setBlog(data.data);
+                setIsLoading(false);
             } catch (error) {
                 if(error instanceof Error) {
-                    toast.error(error.message)
+                    toast.error(error.message);
                 } else {
-                    toast.error("Unknow error while fetching Blog")
+                    toast.error("Unknow error while fetching Blog");
                 }
-                setIsLoading(false)
+                setIsLoading(false);
             }
         })()
     },[id]);
