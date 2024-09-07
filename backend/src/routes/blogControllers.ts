@@ -250,7 +250,8 @@ blogRouter.get('/:id', async (c) => {
           }
         },
         authorId: true,
-        published: true
+        published: true,
+        publishedAt: true,
       }
     });
 
