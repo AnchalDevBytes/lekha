@@ -64,7 +64,7 @@ const AllBlogs = () => {
                     title={blog.title}
                     content={blog.content}
                     author={blog.author.name}
-                    publishedDate={blog.published}
+                    publishedDate={blog.publishedAt}
                 />
               ))
             }

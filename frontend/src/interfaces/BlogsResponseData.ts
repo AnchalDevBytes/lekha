@@ -8,7 +8,7 @@ export interface Blog {
     content: string,
     author: Author,
     authorId: string,
-    published: string
+    publishedAt: string
 }
 
 export interface BlogsResponseData {
