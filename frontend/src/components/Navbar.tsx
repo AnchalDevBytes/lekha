@@ -21,6 +21,10 @@ const Navbar = () => {
     router.replace("/publicRoutes/signin");
   }
 
+  const handleBookmark = () => {
+    router.push("/blogs/saved-blogs");
+  }
+
   return (
     <div className='absolute top-2 right-3 w-96 rounded-md px-5 h-16 flex items-center justify-around shadow'>
       <Link
@@ -44,6 +48,8 @@ const Navbar = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent className='absolute -right-4 top-4'>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={handleBookmark}>Saved Blogs</DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
         </DropdownMenuContent>
