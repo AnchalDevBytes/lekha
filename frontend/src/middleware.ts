@@ -22,6 +22,7 @@ export const config = {
         "/publicRoutes/signin",
         "/blogs/:id*",
         "/blogs",
-        "/blogs/create-blog"
+        "/blogs/create-blog",
+        "/blogs/saved-blogs"
     ],
 };

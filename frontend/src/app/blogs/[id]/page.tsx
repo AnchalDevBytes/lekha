@@ -46,6 +46,12 @@ const ArticlePage = ()  => {
             }
         })()
     },[id]);
+
+    const handleSharing = () => {
+      navigator.clipboard.writeText(window.location.href)
+      .then(() => toast.success('Link copied!'))
+      .catch((error) => toast.error('Failed to copy link' || error.message));
+    }
     
   return isLoading ? (
     <div className="h-screen w-screen flex items-center justify-center text-xl font-bold tracking-widest">
@@ -79,7 +85,10 @@ const ArticlePage = ()  => {
                 }
             </div>
             <div className="flex items-center justify-between my-6 lg:my-8">
-              <div className="flex items-center text-muted-foreground text-sm cursor-pointer hover:text-sky-600 transition-all duration-300">
+              <div 
+                className="flex items-center text-muted-foreground text-sm cursor-pointer hover:text-sky-600 transition-all duration-300"
+                onClick={handleSharing}
+              >
                 <ShareIcon className="w-4 h-4 mr-2" />
                 <span>Share this article</span>
               </div>
