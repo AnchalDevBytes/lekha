@@ -17,7 +17,7 @@ const BookmarksPage = () => {
       setIsLoading(true);
       const { data }: AxiosResponse<BlogsResponseData> = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
         headers: {
-          Authorization: Cookie.get('token')
+          Authorization: Cookie.get('accessToken')
         }
       });
 

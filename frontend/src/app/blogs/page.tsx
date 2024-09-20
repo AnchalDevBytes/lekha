@@ -16,9 +16,10 @@ const AllBlogs = () => {
       setIsLoading(true);
       const { data } : AxiosResponse<BlogsResponseData> = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
         headers: {
-          Authorization: Cookie.get('token')
+          Authorization: Cookie.get('accessToken')
         }
       });
+      console.log(Cookie.get("accessToken"));
       if(data) {
         setBlogs(data.data);
       }
@@ -57,7 +58,7 @@ const AllBlogs = () => {
             className='overflow-y-scroll h-[80vh] scrollbar-hide'
           >
             {
-              blogs.map((blog) => (
+              blogs?.map((blog) => (
                 <Article
                     key={blog.id}
                     id={String(blog.id)}

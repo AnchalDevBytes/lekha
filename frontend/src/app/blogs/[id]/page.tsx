@@ -31,7 +31,7 @@ const ArticlePage = ()  => {
                 setIsLoading(true)
                 const { data } : AxiosResponse<BlogResponseInterface> = await axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
                     headers : {
-                        Authorization : Cookie.get("token")
+                        Authorization : Cookie.get("accessToken")
                     }
                 });
                 setBlog(data.data);

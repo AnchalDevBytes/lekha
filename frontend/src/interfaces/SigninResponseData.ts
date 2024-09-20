@@ -9,5 +9,6 @@ export interface SigninResponseData {
     status: number,
     message: string,
     user: User,
-    token: string
+    accessToken: string;
+    refreshToken: string;
 }

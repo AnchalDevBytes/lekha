@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 export default function middleware(request : NextRequest) {
     const path = request.nextUrl.pathname;
     const isPublicPath = path === "/" || path === "/publicRoutes/signup" || path === "/publicRoutes/signin" ;
-    const token = request.cookies.get('token')?.value ?? "";
+    const token = request.cookies.get('accessToken')?.value ?? "";
     
     if(isPublicPath && token){
         return NextResponse.redirect(new URL('/blogs', request.nextUrl))

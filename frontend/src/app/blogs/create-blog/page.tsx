@@ -30,7 +30,7 @@ export default function CreateBlog() {
         setIsLoading(true);
         const { data } : AxiosResponse<createBlogResponseData> = await axios.post(`${BACKEND_URL}/api/v1/blog`, blogInput, {
           headers: {
-            Authorization: Cookie.get('token')
+            Authorization: Cookie.get('accessToken')
           }
         })
         if(data.status === 200) {

@@ -48,19 +48,20 @@ export const Auth = ({type} : {type: "signup" | "signin"}) => {
             if(data.status !== 200) {
                 toast.error(data.message)
             } else {
-                const token = data.token;
-                if (token) {
-                    Cookie.set('token', token);
-                    toast.success(data.message || "User signed up successfully!");
-                    router.replace('/blogs');
-                } else {
-                    toast.error("Token not found in response.");
+                const { accessToken, refreshToken  } = data;
+                if (accessToken) {
+                    Cookie.set('accessToken', accessToken);
                 }
+                if (refreshToken) {
+                    Cookie.set('refreshToken', refreshToken);
+                }
+                toast.success(data.message || "User signed up successfully!");
+                router.replace('/blogs');
             }
             setIsLoading((prev) => ({...prev, signup: false}));
         } catch (error) {
            if(error instanceof Error) {
-            toast.error(error.message)
+            toast.error(error.message);
            } else {
                 toast.error("Unknow error while signing up...")
            }
@@ -76,12 +77,15 @@ export const Auth = ({type} : {type: "signup" | "signin"}) => {
             if(data.status !== 200) {
                 toast.error(data.message);
             } else {
-                const token = data.token;
-                if(token) {
-                    Cookie.set('token', token);
-                    toast.success(data.message || "User logged-in Successfully !!");
-                    router.replace('/blogs');
+                const { accessToken, refreshToken  } = data;
+                if (accessToken) {
+                    Cookie.set('accessToken', accessToken);
                 }
+                if (refreshToken) {
+                    Cookie.set('refreshToken', refreshToken);
+                }
+                toast.success(data.message || "User signed up successfully!");
+                router.replace('/blogs');
             }
             setIsLoading((prev) => ({...prev, signin: false}));
         } catch (error) {

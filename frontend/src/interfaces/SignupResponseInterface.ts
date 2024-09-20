@@ -10,5 +10,6 @@ export interface SignupResponseData {
     status: number,
     message: string,
     user: User,
-    token: string
+    accessToken: string;
+    refreshToken: string; 
 }
