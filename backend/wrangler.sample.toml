@@ -3,4 +3,5 @@ compatibility_date = "2024-08-23"
 
 [vars]
 DATABASE_URL="here_put_your_database_url"
-JWT_SECRETE="here_put_your_auth_secrete"
+ACCESS_TOKEN_SECRET="here_put_your_access_token_secret"
+REFRESH_TOKEN_SECRET="here_put_your_refresh_token_secret"
