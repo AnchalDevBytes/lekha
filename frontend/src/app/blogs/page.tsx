@@ -19,7 +19,7 @@ const AllBlogs = () => {
           Authorization: Cookie.get('accessToken')
         }
       });
-      console.log(Cookie.get("accessToken"));
+      
       if(data) {
         setBlogs(data.data);
       }

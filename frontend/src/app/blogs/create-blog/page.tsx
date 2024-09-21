@@ -38,7 +38,8 @@ export default function CreateBlog() {
           setIsLoading(false);
           router.push('/blogs')
         } else {
-          toast.error(data.message)
+          toast.error(data.message);
+          setIsLoading(false);
         }
       } catch (error) {
         if(error instanceof Error) {

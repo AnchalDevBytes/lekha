@@ -44,17 +44,10 @@ export const Auth = ({type} : {type: "signup" | "signin"}) => {
         e.preventDefault();
         try {
             setIsLoading((prev) => ({...prev, signup: true}));
-            const { data } : AxiosResponse<SignupResponseData> = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, signupInput);
+            const { data } : AxiosResponse<SignupResponseData> = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, signupInput, {withCredentials : true});
             if(data.status !== 200) {
                 toast.error(data.message)
             } else {
-                const { accessToken, refreshToken  } = data;
-                if (accessToken) {
-                    Cookie.set('accessToken', accessToken);
-                }
-                if (refreshToken) {
-                    Cookie.set('refreshToken', refreshToken);
-                }
                 toast.success(data.message || "User signed up successfully!");
                 router.replace('/blogs');
             }
@@ -73,17 +66,10 @@ export const Auth = ({type} : {type: "signup" | "signin"}) => {
         e.preventDefault();
         try {
             setIsLoading((prev) => ({...prev, signin: true}));
-            const { data }: AxiosResponse<SigninResponseData> = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, signinInput);
+            const { data }: AxiosResponse<SigninResponseData> = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, signinInput, {withCredentials : true});
             if(data.status !== 200) {
                 toast.error(data.message);
             } else {
-                const { accessToken, refreshToken  } = data;
-                if (accessToken) {
-                    Cookie.set('accessToken', accessToken);
-                }
-                if (refreshToken) {
-                    Cookie.set('refreshToken', refreshToken);
-                }
                 toast.success(data.message || "User signed up successfully!");
                 router.replace('/blogs');
             }
