@@ -12,30 +12,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 
 const Navbar = () => {
-  const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
   const router = useRouter();
 
-  const handleLogout = async () => {
-    try {
-      await axios.get(`${BACKEND_URL}/api/v1/user/logout`, {
-        headers : {
-          Authorization : Cookie.get('accessToken')
-        }
-      });
+  const handleLogout = () => {
       Cookie.remove('accessToken');
       Cookie.remove('refreshToken');
       toast.success("Logged out Successfully!");
       router.replace("/publicRoutes/signin");
-    } catch (error) {
-      if(error instanceof Error) {
-        toast.error(error.message)
-       } else {
-          toast.error("Unknow error while Logout..");
-       }
-    }
   }
 
   const handleBookmark = () => {
