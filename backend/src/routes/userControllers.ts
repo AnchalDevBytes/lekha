@@ -238,41 +238,41 @@ import { setCookie } from 'hono/cookie'
     }
   })
 
-  userRouter.get('/logout', async (c) => {
-    try {
-      const response = c.json({
-        status: 200,  
-        success: true,
-        message: "Logout successfully"
-      })
+  // userRouter.get('/logout', async (c) => {
+  //   try {
+  //     const response = c.json({
+  //       status: 200,  
+  //       success: true,
+  //       message: "Logout successfully"
+  //     })
   
-      response.headers.append(
-        'Set-Cookie', 
-        `accessToken=; HttpOnly; Secure; Path=/; Expires=${new Date(0).toUTCString()}`
-      );
-      response.headers.append(
-        'Set-Cookie',
-        `refreshToken=; HttpOnly; Secure; Path=/; Expires=${new Date(0).toUTCString()}`
-      );
+  //     response.headers.append(
+  //       'Set-Cookie', 
+  //       `accessToken=; HttpOnly; Secure; Path=/; Expires=${new Date(0).toUTCString()}`
+  //     );
+  //     response.headers.append(
+  //       'Set-Cookie',
+  //       `refreshToken=; HttpOnly; Secure; Path=/; Expires=${new Date(0).toUTCString()}`
+  //     );
   
-      response.headers.set('Location', '/login');
+  //     response.headers.set('Location', '/login');
   
-      return response;
-    } catch (error) {
-      if (error instanceof Error) {
-        return c.json({
-          success: false,
-          status: 500,
-          message: error.message
-        })
-      } else {
-        c.json({
-          status: 500,
-          message: "Unknown error while logout..."
-        })
-      }
-    }
+  //     return response;
+  //   } catch (error) {
+  //     if (error instanceof Error) {
+  //       return c.json({
+  //         success: false,
+  //         status: 500,
+  //         message: error.message
+  //       })
+  //     } else {
+  //       c.json({
+  //         status: 500,
+  //         message: "Unknown error while logout..."
+  //       })
+  //     }
+  //   }
 
-  });
+  // });
   
   export default userRouter;
