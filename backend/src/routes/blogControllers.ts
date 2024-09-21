@@ -7,7 +7,8 @@ import { createBlogInput, updateBlogInput } from '@anchalrajdevsys/lekha-common'
 const blogRouter = new Hono<{
     Bindings: {
       DATABASE_URL: string;
-      JWT_SECRETE: string;
+      ACCESS_TOKEN_SECRET: string;
+      REFRESH_TOKEN_SECRET: string;
     },
     Variables: {
       userId: string;
@@ -15,16 +16,18 @@ const blogRouter = new Hono<{
 }>()
 
 blogRouter.use('/*', async (c: Context, next: Next) => {
-  const authHeader = c.req.header("authorization") || "";
+  const authHeader = c.req.header("Authorization") || "";
+  
   try {
-    const user = await verify(authHeader, c.env.JWT_SECRETE);
+    const user = await verify(authHeader, c.env.ACCESS_TOKEN_SECRET);
+    
     if(!user) {
       return c.json({
         status: 403,
         message: "You are not loggedIn"
       })
     }
-    c.set("userId", String(user.id))
+    c.set("userId", user.userId)
     await next();
   } catch (error) {
     if(error instanceof Error) {
@@ -46,7 +49,8 @@ blogRouter.post('/', async (c) => {
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const userId = c.get('userId');
+  const userId = Number(c.get('userId'));
+  
   const body = await c.req.json();
   const { success, data } = createBlogInput.safeParse(body);
     if(!success) {
@@ -77,7 +81,7 @@ blogRouter.post('/', async (c) => {
       data: {
         title: title,
         content: content,
-        authorId: Number(userId),
+        authorId: userId,
       }
     })
 

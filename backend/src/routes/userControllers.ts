@@ -1,8 +1,9 @@
 import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
-import { Hono } from 'hono';
+import { Context, Hono } from 'hono';
 import { signinInput, signupInput } from '@anchalrajdevsys/lekha-common';
 import { sign } from 'hono/jwt'
+import { setCookie } from 'hono/cookie'
 
   const userRouter = new Hono<{
     Bindings: {
@@ -20,7 +21,6 @@ import { sign } from 'hono/jwt'
         userId: user.id,
         userName: user.userName,
         name: user.name,
-        expire : Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2,
       };
       return await sign(payload, secret, 'HS256');
   };
@@ -33,12 +33,11 @@ import { sign } from 'hono/jwt'
       userId: user.id,
       userName: user.userName,
       name: user.name,
-      expire : Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
     };
     return await sign(payload, secret, 'HS256')
   };
 
-  userRouter.post('/signup', async (c) => {
+  userRouter.post('/signup', async (c : Context) => {
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate())
@@ -123,6 +122,19 @@ import { sign } from 'hono/jwt'
         }
       })
 
+      // setCookie(c, "accessToken", accessToken, {
+      //   httpOnly : true,
+      //   secure: true,
+      //   sameSite: 'none',
+      //   maxAge: 60 * 60 * 24 * 1
+      // });
+      // setCookie(c, "refreshToken", refreshToken, {
+      //   httpOnly : true,
+      //   secure: true,
+      //   sameSite: 'none',
+      //   maxAge: 60 * 60 * 24 * 7
+      // });
+
       return c.json({
         status: 200,
         message: "User created Successfully !!",
@@ -145,7 +157,7 @@ import { sign } from 'hono/jwt'
     }
   });
   
-  userRouter.post('/signin', async (c) => {
+  userRouter.post('/signin', async (c : Context) => {
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate())
@@ -192,11 +204,24 @@ import { sign } from 'hono/jwt'
         }
       })
 
+      // setCookie(c, "accessToken", accessToken, {
+      //   httpOnly : true,
+      //   secure: true,
+      //   sameSite: 'none',
+      //   maxAge: 60 * 60 * 24 * 1
+      // });
+      // setCookie(c, "refreshToken", refreshToken, {
+      //   httpOnly : true,
+      //   secure: true,
+      //   sameSite: 'none',
+      //   maxAge: 60 * 60 * 24 * 7
+      // });
+
       return c.json({
         status: 200,
         message: "User login successfully",
-        accessToken,
-        refreshToken
+        refreshToken,
+        accessToken
       });
     } catch (error) {
       if (error instanceof Error) {
