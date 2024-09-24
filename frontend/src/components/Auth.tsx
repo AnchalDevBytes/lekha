@@ -99,9 +99,9 @@ export const Auth = ({type} : {type: "signup" | "signin"}) => {
     }
 
   return (
-    <div className="flex items-center justify-center h-screen w-full bg-background">
-        <div className="w-full max-w-md p-6 space-y-6 bg-card rounded-lg shadow-lg">
-            <div className="text-center">
+    <div className="min-h-screen w-full bg-teal-50 flex flex-col justify-center items-center p-4 sm:p-8">
+        <div className="md:bg-white p-6 sm:p-8 rounded-lg shadow-lg max-w-md w-full">
+            <div className="text-center text-teal-800">
                 <h1 className="text-3xl font-bold">
                     {type === "signup" ? "Sign Up" : "Sign In"}
                 </h1>
@@ -138,13 +138,13 @@ export const Auth = ({type} : {type: "signup" | "signin"}) => {
                 />
                 <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full bg-teal-700 hover:bg-teal-600 text-white"
                 >
                     {type === 'signup' && (isLoading.signup ? "...loading" : "Signup")}
                     {type === 'signin' && (isLoading.signin ? "...loading" : "Signin")}
                 </Button>
             </form>
-            <div className="text-center text-muted-foreground">
+            <div className="text-center text-muted-foreground mt-5">
                 {
                     type === "signup" ? "Already have an account ?" : "Don't have an account ?"
                 }

@@ -52,10 +52,10 @@ export default function CreateBlog() {
     }
 
     return (
-      <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto pb-8 pt-24 lg:pt-12 px-4 sm:px-6 lg:px-8">
         <div className="space-y-8">
           <div className="text-center space-y-4">
-            <h1 className="text-3xl font-bold">Publish your thought</h1>
+            <h1 className="text-3xl font-bold text-teal-700">Publish your thought</h1>
           </div>
           <article className="bg-card rounded-lg shadow-lg min-h-[70vh] p-6 lg:p-12">
             <form className="space-y-6" onSubmit={createBlog}>
@@ -88,7 +88,7 @@ export default function CreateBlog() {
               <div className="flex justify-end">
                 <button
                   type="submit"
-                  className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-1"
+                  className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-1 bg-teal-700"
                 >
                   {isLoading ? "Loading..." : "Publish"}
                 </button>

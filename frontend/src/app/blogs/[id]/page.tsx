@@ -54,14 +54,14 @@ const ArticlePage = ()  => {
     }
     
   return isLoading ? (
-    <div className="h-screen w-screen flex items-center justify-center text-xl font-bold tracking-widest">
+    <div className="h-screen w-screen flex items-center justify-center text-xl font-bold tracking-widest bg-teal-50">
         ...loading blog
     </div>
     ) : (
-    <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 mt-10">
+    <div className="container flex py-12 px-4 sm:px-6 lg:px-8 p-10">
       <div className="space-y-8 overflow-hidden ">
         <div className="text-center space-y-4">
-          <h1 className="mx-auto text-3xl font-bold w-[900px]">{blog?.title}</h1>
+          <h1 className="mx-auto text-3xl font-bold text-teal-700 mt-20 lg:mt-0 lg:w-[900px]">{blog?.title}</h1>
           <div className="flex items-center justify-center text-muted-foreground text-sm">
             <span>{new Date(blog?.publishedAt).toLocaleString('en-GB')}</span>
             <span className="mx-2">·</span>
@@ -73,20 +73,20 @@ const ArticlePage = ()  => {
             <div className="flex items-center text-muted-foreground text-sm">
               <Avatar className="w-8 h-8 mr-2">
                 <AvatarImage src="/placeholder-user.jpg" />
-                <AvatarFallback>{blog?.author?.name?.slice(0,1).toUpperCase()}</AvatarFallback>
+                <AvatarFallback className="bg-teal-700 text-white">{blog?.author?.name?.slice(0,1).toUpperCase()}</AvatarFallback>
               </Avatar>
               <span>By {blog?.author.name}</span>
             </div>
           </div>
           <div id="blogContent" className="border-t border-muted pt-4 lg:pt-8">
-            <div className="w-full min-h-96">
+            <div className="w-full min-h-96 text-slate-600">
                 {
                     blog?.content
                 }
             </div>
             <div className="flex items-center justify-between my-6 lg:my-8">
               <div 
-                className="flex items-center text-muted-foreground text-sm cursor-pointer hover:text-sky-600 transition-all duration-300"
+                className="flex items-center text-muted-foreground text-sm cursor-pointer hover:text-teal-600 transition-all duration-300"
                 onClick={handleSharing}
               >
                 <ShareIcon className="w-4 h-4 mr-2" />

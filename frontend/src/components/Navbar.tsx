@@ -28,10 +28,10 @@ const Navbar = () => {
   }
 
   return (
-    <div className='absolute top-2 right-3 w-96 rounded-md px-5 h-16 flex items-center justify-around shadow'>
+    <div className='absolute top-2 md:right-3 w-full md:w-96 rounded-md px-5 h-16 flex items-center justify-around shadow'>
       <Link
         href='/blogs/create-blog'
-        className='cursor-pointer hover:shadow duration-300 transition-all py-2 px-5 bg-black hover:bg-slate-950/90 text-white rounded-full active:text-sky-400 active:shadow-lg'
+        className='cursor-pointer hover:shadow duration-300 transition-all py-2 px-5 bg-teal-800 hover:bg-teal-950/90 text-white rounded-full active:text-sky-400 active:shadow-lg'
       >
         Create
       </Link>
@@ -45,7 +45,7 @@ const Navbar = () => {
         <DropdownMenuTrigger>
           <Avatar className='hover:shadow transition-all duration-300 active:text-sky-400 active:shadow-lg'>
             <AvatarImage src='https://github.com/withastro/astro/blob/main/assets/astro.png?raw=true' />
-            <AvatarFallback>AW</AvatarFallback>
+            <AvatarFallback>Me</AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent className='absolute -right-4 top-4'>

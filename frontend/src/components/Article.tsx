@@ -33,31 +33,32 @@ const Article = ({ title, content, author, publishedDate, id }: articlePropType)
   }
 
   return (
-    <div className='bg-card rounded-lg shadow-lg p-6 mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-6 border-2 border-black hover:shadow-xl duration-300 cursor-pointer hover:bg-slate-50 active:shadow-none'>
+    <div className='bg-card rounded-lg shadow-sm p-6 mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-6 hover:shadow-xl duration-300 hover:bg-slate-50 active:shadow-none'>
       <div className="flex-1">
+        <h2 className="text-xl font-bold mb-2 text-teal-700">{title}</h2>
+          <p className="text-muted-foreground text-sm md:text-base mb-4 max-w-lg">
+            {content?.slice(0, 100)} ...
             <Link href={`/blogs/${id}`}>
-              <h2 className="text-xl font-bold mb-2">{title}</h2>
-              <p className="text-muted-foreground mb-4 max-w-lg">
-                {content?.slice(0, 100)}
-              </p>
-            </Link>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center text-accent-foreground text-sm">
-                <span>{new Date(publishedDate).toLocaleDateString()}</span>
-                <span className="mx-4 text-lg">|</span>
-                <span>{`${Math.ceil(content?.length/100)} minutes`}</span>
-                <span className="mx-4 text-lg">|</span>
-                <span>By {author}</span>
-              </div>
-              <Button 
-                variant="ghost" size="sm" 
-                className="gap-1" 
-                onClick={toggleBookmark}
-              >
-                <BookmarkIcon className={`w-4 h-4 ${isBookmarked ? "fill-blue-500 text-blue-500" : ""}`} />
-              </Button>
-            </div>
+              <Button className="bg-coral-500 hover:bg-coral-600 text-slate-600 sm:w-auto cursor-pointer hover:text-slate-950 transition-all ease-in-out">Read More</Button>
+          </Link>
+          </p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center text-accent-foreground text-sm">
+            <span>{new Date(publishedDate).toLocaleDateString()}</span>
+            <span className="mx-4 text-lg">|</span>
+            <span>{`${Math.ceil(content?.length/100)} minutes`}</span>
+            <span className="mx-4 text-lg">|</span>
+            <span>By {author}</span>
           </div>
+          <Button 
+            variant="ghost" size="sm" 
+            className="gap-1" 
+            onClick={toggleBookmark}
+          >
+            <BookmarkIcon className={`w-4 h-4 ${isBookmarked ? "fill-teal-600 text-teal-600" : "text-teal-600"}`} />
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

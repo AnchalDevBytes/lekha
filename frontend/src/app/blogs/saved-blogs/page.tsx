@@ -50,7 +50,7 @@ const BookmarksPage = () => {
   }, [allBlogs]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className="flex justify-center items-center text-teal-800 font-medium tracking-widest animate-pulse h-[80vh] text-2xl ">Loading...</p>;
   }
 
   if (error) {
@@ -59,10 +59,10 @@ const BookmarksPage = () => {
 
   return (
     <div className="container mx-auto py-28 px-4 sm:px-6 lg:px-8 max-h-screen overflow-hidden">
-      <h1 className='text-3xl font-bold'>Your Collection</h1>
+      <h1 className='text-4xl font-bold text-teal-700 md:tracking-wider'>Your Collection</h1>
         <div
             id='articleCardContainer'
-            className='overflow-y-scroll h-[80vh] mt-5 scrollbar-hide'
+            className='overflow-y-scroll h-[80vh] scrollbar-hide pb-16 mt-2 lg:mt-6'
         >
             {bookmarkedArticles.length > 0 ? (
                 bookmarkedArticles.map(article => (
@@ -76,7 +76,7 @@ const BookmarksPage = () => {
                 />
                 ))
             ) : (
-                <p>No bookmarks found.</p>
+                <p className="text-teal-300">No bookmarks found.</p>
             )}
         </div>
     </div>
