@@ -44,7 +44,7 @@ const BookmarksPage = () => {
   }, []);
 
   useEffect(() => {
-    if (allBlogs.length > 0) {
+    if (allBlogs?.length > 0) {
       filterBookmarkedArticles();
     }
   }, [allBlogs]);

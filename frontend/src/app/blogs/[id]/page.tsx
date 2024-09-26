@@ -62,7 +62,7 @@ const ArticlePage = ()  => {
     <div className="container flex py-12 px-4 sm:px-6 lg:px-8 p-10">
       <div className="space-y-8 overflow-hidden ">
         <div className="text-center space-y-4">
-          <h1 className="mx-auto text-3xl font-bold text-teal-700 mt-20 lg:mt-0 lg:w-[900px]">{blog?.title}</h1>
+          <h1 className="mx-auto text-3xl font-bold text-teal-700 mt-20 lg:w-[900px]">{blog?.title}</h1>
           <div className="flex items-center justify-center text-muted-foreground text-sm">
             <span>{new Date(blog?.publishedAt).toLocaleString('en-GB')}</span>
             <span className="mx-2">·</span>
