@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { BlogInterface, BlogResponseInterface } from "@/interfaces/BlogResponseData";
 import ClockIcon from "@/components/icons/ClockIcon";
 import ShareIcon from "@/components/icons/ShareIcon";
+import ReactQuill from "react-quill";
 
 const ArticlePage = ()  => {
     const [blog, setBlog] = useState<BlogInterface>({
@@ -80,9 +81,11 @@ const ArticlePage = ()  => {
           </div>
           <div id="blogContent" className="border-t border-muted pt-4 lg:pt-8">
             <div className="w-full min-h-96 text-slate-600">
-                {
-                    blog?.content
-                }
+            <ReactQuill
+              value={blog?.content}
+              readOnly={true}
+              theme={"bubble"}
+            />
             </div>
             <div className="flex items-center justify-between my-6 lg:my-8">
               <div 

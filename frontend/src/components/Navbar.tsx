@@ -28,10 +28,10 @@ const Navbar = () => {
   }
 
   return (
-    <div className='absolute top-2 md:right-3 w-full md:w-96 rounded-md px-5 h-16 flex items-center justify-around shadow'>
+    <div className='absolute top-2 md:right-3 w-full rounded-md px-5 lg:px-[30%] h-16 flex items-center justify-around shadow'>
       <Link
         href='/blogs/create-blog'
-        className='cursor-pointer hover:shadow duration-300 transition-all py-2 px-5 bg-teal-800 hover:bg-teal-950/90 text-white rounded-full active:text-sky-400 active:shadow-lg'
+        className='cursor-pointer hover:shadow duration-300 transition-all py-2 px-5 border-2 border-teal-900 rounded-full text-teal-800 active:text-sky-400 active:shadow-lg'
       >
         Create
       </Link>
