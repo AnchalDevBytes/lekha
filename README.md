@@ -8,6 +8,10 @@ This is a full-stack blog application that allows users to create, read, and boo
 - **User Authentication:** Secure login and registration system.
 - **Type Validation:** Consistent type definitions across frontend and backend using Zod and TypeScript.
 
+## Screenshots
+
+![Homepage](/readmeAssets/lekhaHomePage.png)
+
 ## Tech Stack
 
 - **Frontend:** Next.js 14, ShadCN, Tailwind CSS
