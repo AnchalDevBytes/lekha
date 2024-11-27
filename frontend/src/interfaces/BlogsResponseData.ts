@@ -11,8 +11,16 @@ export interface Blog {
     publishedAt: string
 }
 
+interface Meta {
+    currentPage : number,
+    pageSize : number,
+    totalPage : number,
+    totalCount : number
+}
+
 export interface BlogsResponseData {
     status: number,
     message: string,
+    meta: Meta
     data: Blog[]
 }
