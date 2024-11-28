@@ -1,7 +1,7 @@
 "use client";
 import { Blog, BlogsResponseData } from "@/interfaces/BlogsResponseData";
 import axios, { AxiosResponse } from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Cookie from 'js-cookie'
 import { toast } from "react-toastify";
 import Article from "@/components/Article";
@@ -9,13 +9,19 @@ import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 
 const AllBlogs = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [blogs, setBlogs] = useState<Blog[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const pageSize = 10;
   const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
+  const [catchedBlog, setCatchedBlog] = useState<{ [key: number] : Blog[] }>({});
+
+  const blogs = useMemo(() => catchedBlog[currentPage] || [], [catchedBlog, currentPage]);
+
   const fetchBlogs = async (page : number) => {
+    if(catchedBlog[page]) {
+      return;
+    }
     try {
       setIsLoading(true);
       const { data } : AxiosResponse<BlogsResponseData> = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
@@ -29,7 +35,7 @@ const AllBlogs = () => {
       });
       
       if(data) {
-        setBlogs(data.data);
+        setCatchedBlog((prev) => ({ ...prev, [page] : data.data }));
         setTotalPages(data.meta.totalPage)
       }
       setIsLoading(false);

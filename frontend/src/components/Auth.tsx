@@ -105,7 +105,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
   };
 
   return (
-    <div className='min-h-screen border-2 border-red-400 w-screen relative bg-teal-50 flex flex-col justify-center items-center p-4 sm:p-8'>
+    <div className='min-h-screen w-screen relative bg-teal-50 flex flex-col justify-center items-center p-4 sm:p-8'>
       <div className='absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none'>
         <div
           className='absolute top-0 left-0 w-full h-full bg-teal-300 opacity-50'
