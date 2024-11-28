@@ -187,44 +187,66 @@ blogRouter.put('/', async (c) => {
   }
 })
 
-// TODO: add pagination
 blogRouter.get('/bulk', async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const blogs = await prisma.blog.findMany({
-    select: {
-      id: true,
-      title: true,
-      content: true,
-       author: {
-        select: {
-          name: true
-        }
-       },
-      authorId: true,
-      published: true,
-      publishedAt: true
-    },
-    orderBy: {
-      publishedAt : 'desc'
+  const page = parseInt(c.req.query('page') || "1") || 1;
+  const pageSize = parseInt(c.req.query('pageSize') || "10") || 10;
+
+  try {
+    const skip = (page - 1) * pageSize;
+
+    const blogs = await prisma.blog.findMany({
+      select: {
+        id: true,
+        title: true,
+        content: true,
+         author: {
+          select: {
+            name: true
+          }
+         },
+        authorId: true,
+        published: true,
+        publishedAt: true
+      },
+      orderBy: {
+        publishedAt : 'desc'
+      },
+      skip,
+      take : pageSize
+    });
+  
+    if(!blogs) {
+      return c.json({
+        status: 500,
+        message: "Error while fetching blogs"
+      })
     }
-  });
 
-  if(!blogs) {
+    const totalBlogs = await prisma.blog.count();
+  
     return c.json({
-      status: 500,
-      message: "Error while fetching blogs"
-    })
+      status: 200,
+      message: "Blog fetched successfully",
+      data: blogs,
+      meta : {
+        currentPage : page,
+        pageSize : pageSize,
+        totalPage : Math.ceil(totalBlogs / pageSize),
+        totalCount : totalBlogs
+      }
+    });
+  } catch (error) {
+    return c.json({
+      status : 500,
+      message : error || "Unknow error occured"
+  });
   }
-
-  return c.json({
-    status: 200,
-    message: "Blog fetched successfully",
-    data: blogs
-  }) 
 });
+  
 
 blogRouter.get('/:id', async (c) => {
   const prisma = new PrismaClient({
