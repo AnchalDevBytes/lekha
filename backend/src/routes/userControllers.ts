@@ -146,7 +146,7 @@ import { setCookie } from 'hono/cookie'
       if(error instanceof Error) { 
         return c.json({
           status: 500,
-          message: "Unknown error while signing up"
+          message: error.message
         });
       } else {
         c.json({
